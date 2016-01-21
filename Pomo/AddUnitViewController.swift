@@ -11,7 +11,7 @@ import Parse
 import Bolts
 import ParseUI
 
-class AddUnitViewController: UIViewController {
+class AddUnitViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var addressField: UITextField!
@@ -24,6 +24,11 @@ class AddUnitViewController: UIViewController {
     @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
     
     var code: String?
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func selectPicturePressed(sender: AnyObject) {
         //Open a UIImagePickerController to select the picture
@@ -41,7 +46,8 @@ class AddUnitViewController: UIViewController {
         loadingSpinner.startAnimating()
         
         //TODO: Upload a new picture
-        let pictureData = UIImagePNGRepresentation(imageToUpload.image!)
+        //let pictureData = UIImagePNGRepresentation(imageToUpload.image!)
+        let pictureData = UIImageJPEGRepresentation(imageToUpload.image!, 0.5)
         
         //Upload a new picture
         //1
@@ -82,7 +88,8 @@ class AddUnitViewController: UIViewController {
     
     @IBAction func addUnitAction(sender: AnyObject) {
         
-        let pictureData = UIImagePNGRepresentation(imageToUpload.image!)
+        //let pictureData = UIImagePNGRepresentation(imageToUpload.image!)
+        let pictureData = UIImageJPEGRepresentation(imageToUpload.image!, 0.5)
         
         let property = PFObject(className:"Property")
         property["title"] = self.titleField.text
@@ -148,6 +155,11 @@ class AddUnitViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.zipField.delegate = self
+        self.stateField.delegate = self
+        self.cityField.delegate = self
+        self.addressField.delegate = self
+        self.titleField.delegate = self
     }
     
     

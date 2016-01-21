@@ -11,9 +11,14 @@ import Parse
 import Bolts
 import ParseUI
 
-class ResetPasswordViewController: UIViewController {
+class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailField: UITextField!
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func passwordReset(sender: AnyObject) {
         let email = self.emailField.text
@@ -30,6 +35,7 @@ class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.emailField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
