@@ -34,10 +34,13 @@ class PropertyInfo: PFObject, PFSubclassing {
         //1
         let query = PFQuery(className: PropertyInfo.parseClassName())
         //2
-        query.includeKey("user")
-        query.includeKey("currentTenant.username")
+        //query.includeKey("username")
+        //query.includeKey("currentContract")
+        //query.includeKey("user")
+        //query.includeKey("currentTenant.username")
         //3
-        query.orderByDescending("createdAt")
+        query.whereKey("owner", equalTo: PFUser.currentUser()!)
+        //query.orderByDescending("createdAt")
         return query
     }
     

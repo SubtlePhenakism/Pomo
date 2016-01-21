@@ -11,11 +11,16 @@ import Parse
 import Bolts
 import ParseUI
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func signUpAction(sender: AnyObject) {
         
@@ -85,6 +90,9 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.passwordField.delegate = self
+        self.usernameField.delegate = self
+        self.emailField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {

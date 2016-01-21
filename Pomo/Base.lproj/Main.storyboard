@@ -302,16 +302,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfw-Sr-PKF">
                                 <rect key="frame" x="72" y="195" width="270" height="346"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pP4-K1-SQf">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pP4-K1-SQf">
                                         <rect key="frame" x="13" y="118" width="245" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="GTf-aE-Vs9"/>
                                             <constraint firstAttribute="width" constant="245" id="Tl1-Rk-sVj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQY-96-Gma">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQY-96-Gma">
                                         <rect key="frame" x="13" y="63" width="245" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="245" id="cCF-mo-Iq5"/>
@@ -369,7 +369,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="VRr-AY-x7Y" kind="presentation" id="FnM-3C-aiz"/>
+                                            <segue destination="VRr-AY-x7Y" kind="presentation" id="Kgc-tt-NZU"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pomo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzq-9p-0AH">
@@ -1150,11 +1150,13 @@
                             <constraint firstItem="MhY-r5-v1b" firstAttribute="leading" secondItem="lHF-nw-ssr" secondAttribute="leading" id="aFy-cp-ywj"/>
                             <constraint firstAttribute="trailing" secondItem="MhY-r5-v1b" secondAttribute="trailing" id="e29-JI-ghi"/>
                             <constraint firstAttribute="bottom" secondItem="MhY-r5-v1b" secondAttribute="bottom" id="m3t-4r-Fmc"/>
+                            <constraint firstItem="xfs-35-pi5" firstAttribute="top" secondItem="MhY-r5-v1b" secondAttribute="bottom" id="rPF-cb-YW6"/>
                             <constraint firstItem="xfs-35-pi5" firstAttribute="top" secondItem="e5L-6i-1Zl" secondAttribute="bottom" id="rau-mg-baL"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Dul-pm-W77"/>
+                                <exclude reference="m3t-4r-Fmc"/>
                             </mask>
                         </variation>
                     </view>
@@ -1975,9 +1977,9 @@
         <image name="spanner3" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IrK-rM-6HG"/>
+        <segue reference="n5w-PE-XOa"/>
+        <segue reference="unw-cT-zYX"/>
         <segue reference="u4b-V9-55Z"/>
         <segue reference="wJz-f5-DE1"/>
-        <segue reference="mcn-Fb-6RS"/>
     </inferredMetricsTieBreakers>
 </document>

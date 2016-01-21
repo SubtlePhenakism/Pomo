@@ -15,6 +15,7 @@ class TableViewController: PFQueryTableViewController {
     
     var nameVar = ""
     
+    var currentUser = PFUser.currentUser()
     
     @IBOutlet weak var userNameLabel: UIBarButtonItem!
     
@@ -31,6 +32,8 @@ class TableViewController: PFQueryTableViewController {
         // Show the current visitor's username
         if let pUserName = PFUser.currentUser()?["username"] as? String {
             self.userNameLabel.title = pUserName
+        } else {
+            print("no username")
         }
         
         //let propertyQuery = PFQuery(className:"Property")
@@ -42,7 +45,8 @@ class TableViewController: PFQueryTableViewController {
     override func viewWillAppear(animated: Bool) {
         //if (PFUser.currentUser() == nil) {
         let currentUser = PFUser.currentUser()?.username
-        if currentUser == nil {
+        print(currentUser)
+        if (currentUser == nil) {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
                 self.presentViewController(viewController, animated: true, completion: nil)
@@ -66,15 +70,20 @@ class TableViewController: PFQueryTableViewController {
         self.paginationEnabled = false
     }
     
-    // Define the query that will provide the data for the table view
+     //Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: "Property")
         //query.orderByAscending("title")
         query.includeKey("currentContract")
         query.includeKey("username")
         query.includeKey("currentTenant")
-        query.whereKey("owner", equalTo: (PFUser.currentUser()!))
+        if (currentUser != nil) {
+        query.whereKey("owner", equalTo: currentUser!)
         return query
+        } else {
+            query.whereKey("owner", equalTo: "wloKraBkvJ")
+            return query
+        }
     }
     
     //override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -100,20 +109,20 @@ class TableViewController: PFQueryTableViewController {
             cell.propertyImage?.file = image
             cell.propertyImage?.loadInBackground()
         }
-        var name = ""
-        if let contract = object?["currentContract"] as? PFObject {
-            print(contract["lessee"])
-            print(object?["currentTenant"])
-            if let lessee = contract["lessee"] as? PFUser {
-                print(lessee.objectId)
-                let usernameQuery = try! PFQuery.getUserObjectWithId(lessee.objectId!)
-                let tenantUsername = usernameQuery.username
-                print(tenantUsername)
-                name = (tenantUsername as String?)!
-                
-            }
-            print("")
-        }
+        let name = ""
+//        if let contract = object?["currentContract"] as? PFObject {
+//            print(contract["lessee"])
+//            print(object?["currentTenant"])
+//            if let lessee = contract["lessee"] as? PFUser {
+//                print(lessee.objectId)
+//                let usernameQuery = try! PFQuery.getUserObjectWithId(lessee.objectId!)
+//                let tenantUsername = usernameQuery.username
+//                print(tenantUsername)
+//                name = (tenantUsername as String?)!
+//                
+//            }
+//        }
+        
         print(name)
         nameVar = (name as String?)!
         
